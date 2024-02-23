@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:testing_codelabs/models/favourites.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({super.key});
@@ -48,11 +49,15 @@ class FavouriteItemTile extends StatelessWidget {
             key: Key("remove_icon_$itemNo"),
             onPressed: () {
               Provider.of<Favourite>(context, listen: false).remove(itemNo);
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(
-                  content: Text('Removed from favorites.'),
-                  duration: Duration(seconds: 1),
-                ),
+              showCupertinoModalPopup(
+                context: context,
+                builder: (context) {
+                  return const CupertinoActionSheet(
+                    title: Text(
+                      "Removed from favourites.",
+                    ),
+                  );
+                },
               );
             },
             icon: const Icon(Icons.close),
