@@ -34,34 +34,32 @@ class FavouriteItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Padding(
-        padding: const EdgeInsets.all(0.8),
-        child: ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Colors.primaries[itemNo % Colors.primaries.length],
-          ),
-          title: Text(
-            "Item Number: $itemNo",
-            key: Key('favorites_text_$itemNo'),
-          ),
-          trailing: IconButton(
-            key: Key("remove_icon_$itemNo"),
-            onPressed: () {
-              Provider.of<Favourite>(context, listen: false).remove(itemNo);
-              showCupertinoModalPopup(
-                context: context,
-                builder: (context) {
-                  return const CupertinoActionSheet(
-                    title: Text(
-                      "Removed from favourites.",
-                    ),
-                  );
-                },
-              );
-            },
-            icon: const Icon(Icons.close),
-          ),
+    return Padding(
+      padding: const EdgeInsets.all(0.8),
+      child: CupertinoListTile.notched(
+        leading: CircleAvatar(
+          backgroundColor: Colors.primaries[itemNo % Colors.primaries.length],
+        ),
+        title: Text(
+          "Item Number: $itemNo",
+          key: Key('favorites_text_$itemNo'),
+        ),
+        trailing: IconButton(
+          key: Key("remove_icon_$itemNo"),
+          onPressed: () {
+            Provider.of<Favourite>(context, listen: false).remove(itemNo);
+            showCupertinoModalPopup(
+              context: context,
+              builder: (context) {
+                return const CupertinoActionSheet(
+                  title: Text(
+                    "Removed from favourites.",
+                  ),
+                );
+              },
+            );
+          },
+          icon: const Icon(Icons.close),
         ),
       ),
     );
