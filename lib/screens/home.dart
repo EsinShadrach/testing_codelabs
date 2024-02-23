@@ -54,7 +54,10 @@ class ItemTile extends StatelessWidget {
         trailing: IconButton(
           key: Key('icon_$itemNo'),
           icon: favoritesList.items.contains(itemNo)
-              ? const Icon(Icons.favorite)
+              ? Icon(
+                  Icons.favorite,
+                  color: Theme.of(context).colorScheme.primary,
+                )
               : const Icon(Icons.favorite_border),
           onPressed: () {
             !favoritesList.items.contains(itemNo)
