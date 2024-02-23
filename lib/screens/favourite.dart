@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:testing_codelabs/models/favourites.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 
 class FavouriteScreen extends StatelessWidget {
   const FavouriteScreen({super.key});
@@ -51,10 +50,19 @@ class FavouriteItemTile extends StatelessWidget {
             showCupertinoModalPopup(
               context: context,
               builder: (context) {
-                return const CupertinoActionSheet(
-                  title: Text(
+                return CupertinoActionSheet(
+                  title: const Text(
                     "Removed from favourites.",
                   ),
+                  actions: [
+                    CupertinoActionSheetAction(
+                      isDefaultAction: true,
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text("Close"),
+                    )
+                  ],
                 );
               },
             );
